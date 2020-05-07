@@ -15,4 +15,5 @@ elif (env == 'test'):
 else:
     raise Exception(f"env is required \'development\', \'test\'. env: {env}")
 
+
 import app.views  # nopep8

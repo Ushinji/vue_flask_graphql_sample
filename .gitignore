@@ -253,4 +253,7 @@ env.bak/
 venv.bak/
 pip-selfcheck.json
 
+# database
+database/
+
 # End of https://www.gitignore.io/api/node,venv,pydev,macos,python
