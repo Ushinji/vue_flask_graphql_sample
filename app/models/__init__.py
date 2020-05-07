@@ -13,6 +13,14 @@ class BaseModel(Model):
     created_at = Column(DateTime, default=datetime.now, nullable=False)
     updated_at = Column(DateTime, default=datetime.now, nullable=False)
 
+    def save(self, commit=True):
+        self.query.session.add(self)
+        if commit:
+            self.query.session.commit()
+        else:
+            self.query.session.flush()
+        return self
+
 
 db = SQLAlchemy(application, model_class=BaseModel)
 
