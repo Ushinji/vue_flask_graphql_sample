@@ -256,4 +256,8 @@ pip-selfcheck.json
 # database
 database/
 
+### direnv ###
+.direnv
+.envrc
+
 # End of https://www.gitignore.io/api/node,venv,pydev,macos,python
