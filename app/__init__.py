@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_graphql import GraphQLView
 
 
 application = Flask(__name__)
@@ -17,3 +18,14 @@ else:
 
 
 import app.views  # nopep8
+from .schema import schema  # nopep8
+
+
+application.add_url_rule(
+    '/graphql',
+    view_func=GraphQLView.as_view(
+        'graphql',
+        schema=schema,
+        graphiql=True  # for having the GraphiQL interface
+    )
+)

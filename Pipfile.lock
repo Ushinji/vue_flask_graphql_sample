@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ccea024e7e2ea6fd741bcb6c7afbf2879ad1839d7443859b28a3423679920dc9"
+            "sha256": "54cf08a114c26196a8f28d5e131daaf648ac3a83f4e0bdb31ef20a5745664e8c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -22,6 +22,13 @@
             ],
             "version": "==1.4.2"
         },
+        "aniso8601": {
+            "hashes": [
+                "sha256:513d2b6637b7853806ae79ffaca6f3e8754bdd547048f5ccc1420aec4b714f1e",
+                "sha256:d10a4bf949f619f719b227ef5386e31f49a2b6d453004b21f02661ccc8670c7b"
+            ],
+            "version": "==7.0.0"
+        },
         "click": {
             "hashes": [
                 "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
@@ -36,6 +43,13 @@
             ],
             "index": "pypi",
             "version": "==1.1.2"
+        },
+        "flask-graphql": {
+            "hashes": [
+                "sha256:825578c044df436cd74503a38bbd31c919a90acda5e9b6e0e45736964bc5235d"
+            ],
+            "index": "pypi",
+            "version": "==2.0.1"
         },
         "flask-migrate": {
             "hashes": [
@@ -58,6 +72,41 @@
                 "sha256:6974785d913666587949f7c2946f7001e4fa2cb2d19f4e69ead02e4b8f50b33d"
             ],
             "version": "==2.4.1"
+        },
+        "graphene": {
+            "hashes": [
+                "sha256:09165f03e1591b76bf57b133482db9be6dac72c74b0a628d3c93182af9c5a896",
+                "sha256:2cbe6d4ef15cfc7b7805e0760a0e5b80747161ce1b0f990dfdc0d2cf497c12f9"
+            ],
+            "version": "==2.1.8"
+        },
+        "graphene-sqlalchemy": {
+            "hashes": [
+                "sha256:6d5d6687e84350b418c1eca780191526bbd24e53523a0781f70ad2e1bdc64651",
+                "sha256:fda3a131149a96f02b18c4d8276102edd80ba22b92939c9a3fc94bda699c1477"
+            ],
+            "index": "pypi",
+            "version": "==2.2.2"
+        },
+        "graphql-core": {
+            "hashes": [
+                "sha256:74a8f509ae8c4a58271f5d6b46d5c75b4aed116821ab62dea252d8041bfe057a",
+                "sha256:c06e59153246dd48ddbf86ca94a8f045c1b71daf8154b4635e1a0e2e11d9b60b"
+            ],
+            "version": "==2.3.1"
+        },
+        "graphql-relay": {
+            "hashes": [
+                "sha256:870b6b5304123a38a0b215a79eace021acce5a466bf40cd39fa18cb8528afabb",
+                "sha256:ac514cb86db9a43014d7e73511d521137ac12cf0101b2eaa5f0a3da2e10d913d"
+            ],
+            "version": "==2.0.1"
+        },
+        "graphql-server-core": {
+            "hashes": [
+                "sha256:04ee90da0322949f7b49ff6905688e3a21a9efbd5a7d7835997e431a0afdbd11"
+            ],
+            "version": "==1.2.0"
         },
         "itsdangerous": {
             "hashes": [
@@ -118,6 +167,12 @@
             ],
             "version": "==1.1.1"
         },
+        "promise": {
+            "hashes": [
+                "sha256:dfd18337c523ba4b6a58801c164c1904a9d4d1b1747c7d5dbf45b693a49d93d0"
+            ],
+            "version": "==2.3"
+        },
         "python-dateutil": {
             "hashes": [
                 "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c",
@@ -132,6 +187,20 @@
                 "sha256:5f98b069316ea1c2ed3f67e7f5df6c0d8f10b689964a4a811ff64f0106819ec8"
             ],
             "version": "==1.0.4"
+        },
+        "rx": {
+            "hashes": [
+                "sha256:13a1d8d9e252625c173dc795471e614eadfe1cf40ffc684e08b8fff0d9748c23",
+                "sha256:7357592bc7e881a95e0c2013b73326f704953301ab551fbc8133a6fadab84105"
+            ],
+            "version": "==1.6.1"
+        },
+        "singledispatch": {
+            "hashes": [
+                "sha256:5b06af87df13818d14f08a028e42f566640aef80805c3b50c5056b086e3c2b9c",
+                "sha256:833b46966687b3de7f438c761ac475213e53b306740f1abfaa86e1d1aae56aa8"
+            ],
+            "version": "==3.4.0.3"
         },
         "six": {
             "hashes": [
