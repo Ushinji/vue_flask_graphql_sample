@@ -2,14 +2,19 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
-module.exports = (env = {}) => ({
-  mode: env.prod ? 'production' : 'development',
-  devtool: env.prod ? 'source-map' : 'cheap-module-eval-source-map',
-  entry: path.resolve(__dirname, './src/main.ts'),
+module.exports = () => ({
+  mode: devMode ? 'development' : 'production',
+  devtool: devMode ? 'cheap-module-eval-source-map' : 'source-map',
+  entry: {
+    main: path.resolve(__dirname, './src/main.ts'),
+  },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.join(__dirname, 'public/dist'),
+    filename: devMode ? '[name].js' : '[name]-[hash].js',
+    publicPath: devMode ? 'http://localhost:4001/' : '',
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -44,7 +49,7 @@ module.exports = (env = {}) => ({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: !env.prod },
+            options: { hmr: devMode },
           },
           'css-loader',
         ],
@@ -56,12 +61,12 @@ module.exports = (env = {}) => ({
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
+    new ManifestPlugin(),
   ],
   devServer: {
-    inline: true,
-    hot: true,
-    stats: 'minimal',
-    contentBase: __dirname,
-    overlay: true,
+    contentBase: '../public/dist',
+    port: 4001,
+    disableHostCheck: true,
+    host: '0.0.0.0',
   },
 });
