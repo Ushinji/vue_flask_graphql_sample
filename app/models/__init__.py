@@ -13,6 +13,17 @@ class BaseModel(Model):
     created_at = Column(DateTime, default=datetime.now, nullable=False)
     updated_at = Column(DateTime, default=datetime.now, nullable=False)
 
+    @classmethod
+    def find(cls, id):
+        record = cls.query.get(id)
+        if not record:
+            raise RecordNotFoundError
+        return record
+
+    @classmethod
+    def find_by(cls, **kwargs):
+        return cls.query.filter_by(**kwargs).first()
+
     def save(self, commit=True):
         self.query.session.add(self)
         if commit:
@@ -25,3 +36,4 @@ class BaseModel(Model):
 db = SQLAlchemy(application, model_class=BaseModel)
 
 from .project import Project  # nopep8
+from .user import User  # nopep8
