@@ -18,7 +18,7 @@ else:
 
 
 import app.views  # nopep8
-from .schema import schema  # nopep8
+from app.graphql import schema  # nopep8
 
 
 application.add_url_rule(
