@@ -1,72 +1,56 @@
 /* eslint-disable */
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-module.exports = () => ({
-  mode: devMode ? 'development' : 'production',
-  devtool: devMode ? 'cheap-module-eval-source-map' : 'source-map',
-  entry: {
-    main: path.resolve(__dirname, './src/main.ts'),
-  },
-  output: {
-    path: path.join(__dirname, 'public/dist'),
-    filename: devMode ? '[name].js' : '[name]-[hash].js',
-    publicPath: devMode ? 'http://localhost:4001/' : '',
-  },
-  resolve: {
-    extensions: ['.js', '.vue'],
-    alias: {
-      vue: '@vue/runtime-dom',
-      '@': path.resolve(__dirname, 'src'),
+module.exports = (_, argv) => {
+  return {
+    entry: {
+      main: './src/index.ts',
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: 'ts-loader',
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
+    output: {
+      path: path.join(__dirname, './public/dist'),
+      filename: '[name]-[hash].js',
+      publicPath: argv.mode === 'production' ? '' : 'http://localhost:4001/',
+    },
+    resolve: {
+      extensions: ['.js', '.ts', '.vue', '.scss'],
+      alias: {
+        vue$: 'vue/dist/vue.esm.js',
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
+    module: {
+      rules: [
+        {
+          test: /\.vue$/,
+          exclude: /node_modules/,
+          loader: 'vue-loader',
         },
-      },
-      {
-        test: /\.vue$/,
-        use: 'vue-loader',
-      },
-      {
-        test: /\.png$/,
-        use: {
-          loader: 'url-loader',
-          options: { limit: 8192 },
-        },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { hmr: devMode },
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/],
           },
-          'css-loader',
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new ManifestPlugin(),
-  ],
-  devServer: {
-    contentBase: '../public/dist',
-    port: 4001,
-    disableHostCheck: true,
-    host: '0.0.0.0',
-  },
-});
+        },
+        {
+          test: /\.css$/,
+          use: ['vue-style-loader', 'css-loader'],
+        },
+        {
+          test: /\.scss$/,
+          use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+        },
+      ],
+    },
+    plugins: [new ManifestPlugin(), new VueLoaderPlugin()],
+    devServer: {
+      contentBase: '../public/dist',
+      port: 4001,
+      disableHostCheck: true,
+      host: '0.0.0.0',
+    },
+  };
+};

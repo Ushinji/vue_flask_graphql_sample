@@ -1,10 +1,9 @@
 <template>
-  <div class="container">Hello world</div>
+  <div>Hello world</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  setup() {},
-});
+export default {
+  name: 'App',
+};
 </script>
